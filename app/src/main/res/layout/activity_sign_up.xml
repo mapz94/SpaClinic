@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="32dp"
+    android:background="@drawable/custom_gradient"
+    tools:context=".SignUp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+            <TextView
+                android:id="@+id/singuptittle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrar"
+                android:textSize="32dp"
+                />
+            <TextView
+                android:id="@+id/singupsubtitle"
+                android:layout_below="@id/singuptittle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:layout_marginVertical="8dp"
+                android:text="Favor llenar el formulario con sus datos:"
+                />
+            <EditText
+                android:id="@+id/signupemail"
+                android:layout_below="@id/singupsubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email: "
+                android:inputType="textEmailAddress"
+                />
+            <EditText
+                android:id="@+id/signupfirstname"
+                android:layout_below="@id/signupemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombres: "
+                />
+            <EditText
+                android:id="@+id/signuplastname"
+                android:layout_below="@id/signupfirstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Apellidos: "
+                />
+            <EditText
+                android:id="@+id/singuppassword"
+                android:layout_below="@id/signuplastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña: "
+                android:inputType="textPassword"
+                />
+            <RelativeLayout
+                android:id="@+id/signupactions"
+                android:layout_below="@id/singuppassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                >
+
+                <Button
+                    android:id="@+id/signupdonebutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="SignUp"
+                    android:text="Registrarse" />
+                <Button
+                    android:id="@+id/signupback"
+                    android:layout_below="@id/signupdonebutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:textColor="#6200EE"
+                    android:text="volver"
+                    android:layout_marginVertical="4dp"
+                    android:onClick="signUpBack"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
