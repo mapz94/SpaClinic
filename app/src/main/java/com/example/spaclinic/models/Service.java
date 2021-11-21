@@ -1,5 +1,9 @@
 package com.example.spaclinic.models;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 @Table(table_name = "services")
 public class Service extends Model {
     @Column(
@@ -44,7 +48,11 @@ public class Service extends Model {
     }
 
     public MenuItem getMenuItem() {
-        return new MenuItem(this.ID, this.service, "", "");
+        DecimalFormat df = new DecimalFormat(
+                "#,##0",
+                new DecimalFormatSymbols(new Locale("es", "CL")));
+        return new MenuItem(this.ID, this.service, "",
+                "$" + df.format(this.cost));
     }
 
 }

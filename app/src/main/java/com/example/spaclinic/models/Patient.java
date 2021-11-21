@@ -1,7 +1,5 @@
 package com.example.spaclinic.models;
 
-import java.util.Date;
-
 @Table(table_name = "patients")
 public class Patient extends Model {
     @Column(
@@ -26,7 +24,13 @@ public class Patient extends Model {
             column_name = "birthdate",
             column_props = "TEXT NOT NULL"
     )
-    private Date birthdate;
+    private String birthdate;
+
+    @Column(
+            column_name = "email",
+            column_props = "TEXT NOT NULL"
+    )
+    private String email;
 
     @Column(
             column_name = "rut",
@@ -57,6 +61,12 @@ public class Patient extends Model {
             column_props = "TEXT NOT NULL"
     )
     private String occupation;
+
+    @Column(
+            column_name = "allergies",
+            column_props = "TEXT NOT NULL"
+    )
+    private String allergies;
 
     @Column(
             column_name = "drugs",
@@ -106,11 +116,11 @@ public class Patient extends Model {
         this.lastName = lastName;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -138,6 +148,14 @@ public class Patient extends Model {
         this.phone = phone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getEmergencyPhone() {
         return emergencyPhone;
     }
@@ -152,6 +170,14 @@ public class Patient extends Model {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
     }
 
     public String getDrugs() {

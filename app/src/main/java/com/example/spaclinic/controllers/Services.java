@@ -23,6 +23,7 @@ import com.example.spaclinic.dialog.NewService;
 import com.example.spaclinic.models.Appointment;
 import com.example.spaclinic.models.Model;
 import com.example.spaclinic.models.Service;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public class Services extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private Button addButton;
+    private FloatingActionButton addButton;
 
     public Services() {
         // Required empty public constructor

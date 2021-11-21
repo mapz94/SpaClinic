@@ -45,7 +45,7 @@ public class SignUp extends AppCompatActivity {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void SignUp(View v){
         if(signupPassword.getText().toString().isEmpty() ||
            signupFirstName.getText().toString().isEmpty() ||
@@ -65,7 +65,7 @@ public class SignUp extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Contraseña debe ser igual o mayor a 8 caracteres.",Toast.LENGTH_SHORT).show();
             return;
         }
-        List<User> users = (List<User>) dao.GetAll(User.class, "email = " + signup.getEmail().toString());
+        List<User> users = (List<User>) dao.GetAll(User.class, "email = '" + signup.getEmail().toString() + "'") ;
         if(users.size() > 0){
             Toast.makeText(getApplicationContext(),"Este usuario ya existe!",Toast.LENGTH_SHORT).show();
             return;
@@ -76,6 +76,7 @@ public class SignUp extends AppCompatActivity {
         }
         Toast.makeText(getApplicationContext(),"Favor inciar sesión con su nueva cuenta.",Toast.LENGTH_SHORT).show();
 
+        signUpBack(v);
     }
 
     public void signUpBack(View v){

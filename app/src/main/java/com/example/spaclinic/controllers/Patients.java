@@ -17,9 +17,12 @@ import android.view.ViewGroup;
 import com.example.spaclinic.DAO;
 import com.example.spaclinic.R;
 import com.example.spaclinic.RecyclerViewAdapter;
+import com.example.spaclinic.dialog.NewPatient;
+import com.example.spaclinic.dialog.NewService;
 import com.example.spaclinic.models.Appointment;
 import com.example.spaclinic.models.Model;
 import com.example.spaclinic.models.Patient;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -42,6 +45,8 @@ public class Patients extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private FloatingActionButton addButton;
 
     public Patients() {
         // Required empty public constructor
@@ -86,6 +91,17 @@ public class Patients extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        addButton = getView().findViewById(R.id.addButton);
+
+        addButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                openDialog();
+            }
+        });
+
         recycler = getView().findViewById(R.id.recycler);
 
         DAO dao = new DAO(getContext());
@@ -99,5 +115,10 @@ public class Patients extends Fragment {
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), items);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    public void openDialog(){
+        NewPatient newPatient = new NewPatient();
+        newPatient.show(getParentFragmentManager(), "Nuevo Paciente");
     }
 }

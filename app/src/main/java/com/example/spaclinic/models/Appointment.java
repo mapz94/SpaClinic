@@ -24,7 +24,7 @@ public class Appointment extends Model {
     private int userID;
 
     @Column(
-            column_name = "sserviceID",
+            column_name = "serviceID",
             column_props = "INTEGER NOT NULL"
     )
     private int serviceID;

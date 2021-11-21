@@ -7,7 +7,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
+import com.example.spaclinic.models.Appointment;
 import com.example.spaclinic.models.Column;
+import com.example.spaclinic.models.Patient;
+import com.example.spaclinic.models.Service;
 import com.example.spaclinic.models.Table;
 import com.example.spaclinic.models.User;
 
@@ -45,11 +48,11 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         DAO dao = new DAO(appContext);
 
-        /*
-        User user = (User) dao.Get(User.class,"ID = 1", "");
+
+        User user = (User) dao.Get(User.class,"ID = 1");
         System.out.println(user.getEmail());
-        user.setEmail("miguel.apg94@gmail.com");
-        dao.update(user, "");
+        user.setPassword("password1234");
+        //dao.update(user, "");
 
         List<User> users = (List<User>) dao.GetAll(User.class, "");
         System.out.println(users.size());
@@ -60,7 +63,7 @@ public class ExampleInstrumentedTest {
             System.out.println(user1.getLastName());
             System.out.println(user1.getEmail());
             System.out.println(user1.getPassword());
-        }*/
+        }
 
 
     }
@@ -76,7 +79,7 @@ public class ExampleInstrumentedTest {
         user.setFirstName("Miguel");
         user.setLastName("Pérez");
         user.setEmail("miguel.apg94@gmail.com");
-        user.setPassword("Password1994*");
+        user.setPassword("password1234");
 
         System.out.println("-------Creating...");
         System.out.println(user.getFirstName());
@@ -85,7 +88,7 @@ public class ExampleInstrumentedTest {
         System.out.println(user.getPassword());
         System.out.println("-------");
 
-        //dao.insert(user);
+        dao.insert(user);
 
         List<User> users = (List<User>) dao.GetAll(User.class, "");
         System.out.println(users.size());
@@ -125,7 +128,6 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         DAO dao = new DAO(appContext);
 
-        //dao.delete(User.class, "");
 
 
     }

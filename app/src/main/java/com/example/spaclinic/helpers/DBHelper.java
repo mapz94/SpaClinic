@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "SPACLINIC";
+    private static final String DATABASE_NAME = "SPACLINICC";
 
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 3);
