@@ -1,6 +1,7 @@
 package com.example.spaclinic.models;
 
-public class PatientDrug {
+@Table(table_name = "patientDrugs")
+public class PatientDrug extends Model {
     @Column(
             column_name = "ID",
             column_props = "INTEGER PRIMARY KEY AUTOINCREMENT",
@@ -47,5 +48,10 @@ public class PatientDrug {
 
     public void setDrug(String drug) {
         this.drug = drug;
+    }
+
+    @Override
+    public MenuItem getMenuItem() {
+        return null;
     }
 }

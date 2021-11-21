@@ -24,8 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     private DAO dao;
 
+    private LoadingDialog loadingDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loadingDialog = new LoadingDialog(MainActivity.this);
         try{
             dao = new DAO(getApplicationContext());
         }catch(Exception e){
@@ -44,21 +47,28 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void login(View v){
+        loadingDialog.startLoadingDialog();
         if(userBox.getText().toString().isEmpty() || passBox.getText().toString().isEmpty()){
             Toast.makeText(getApplicationContext(),"Favor llenar todos los campos.",Toast.LENGTH_SHORT).show();
+            loadingDialog.dismissDialog();
             return;
         }
         if(! new User().setEmail(userBox.getText().toString())){
             Toast.makeText(getApplicationContext(),"Favor revisar formato email.",Toast.LENGTH_SHORT).show();
+            loadingDialog.dismissDialog();
             return;
         }
-        User login = (User) dao.Get(User.class, "email = " + userBox.getText().toString());
+        User login = (User) dao.Get(User.class, "email = '" + userBox.getText().toString() + "'");
         if(!login.isPassword(passBox.getText().toString())){
             Toast.makeText(getApplicationContext(),"Contraseña incorrecta!.",Toast.LENGTH_SHORT).show();
+            loadingDialog.dismissDialog();
             return;
         }
+        loadingDialog.dismissDialog();
         Toast.makeText(getApplicationContext(),"Bienvenido!",Toast.LENGTH_SHORT).show();
         // TODO: Go to main application once logged in.
+        Intent i = new Intent(this, Menu.class);
+        this.startActivity(i);
     }
 
     public void goSignUp(View v){

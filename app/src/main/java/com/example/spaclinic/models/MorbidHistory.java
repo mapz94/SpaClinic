@@ -1,7 +1,8 @@
 package com.example.spaclinic.models;
 
 
-public class MorbidHistory {
+@Table(table_name = "morbidhistories")
+public class MorbidHistory extends Model {
     @Column(
             column_name = "ID",
             column_props = "INTEGER PRIMARY KEY AUTOINCREMENT",
@@ -64,5 +65,10 @@ public class MorbidHistory {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public MenuItem getMenuItem() {
+        return null;
     }
 }

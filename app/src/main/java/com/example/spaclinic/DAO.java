@@ -16,9 +16,11 @@ import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Stream;
 
 public class DAO {
     private static SQLiteDatabase db;
@@ -114,6 +116,7 @@ public class DAO {
                     }
                 }else{
                     where = where.isEmpty() ? "ID = " + field.get(model) : where;
+                    // Hay que hacer que solo tome la id que le corresponde sino pisara cada fila.
                 }
             } catch (IllegalArgumentException | IllegalAccessException e){
 
@@ -141,9 +144,10 @@ public class DAO {
                 getColumns(modelClass.getDeclaredFields()), where, null, null,
                 null, orderBy);
         c.moveToFirst();
+        Object object = new Object();
         if (c.getCount() > 0) {
             try {
-                Object object = modelClass.newInstance();
+                object = modelClass.newInstance();
                 int cont = 0;
                 for (Field field : modelClass.getDeclaredFields()) {
                     field.setAccessible(true);
@@ -162,19 +166,24 @@ public class DAO {
                     }
                     cont++;
                 }
-                c.close();
-                return object;
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         c.close();
-        return null;
+        return object;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public List<?> GetAll(Class<?> modelClass, String where) {
         this.create(modelClass);
-        String tableName  = modelClass.getDeclaredAnnotation(Table.class).table_name();
+
+        String tableName = "";
+        try{
+            tableName  = modelClass.getDeclaredAnnotation(Table.class).table_name();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         Cursor c = db.query(tableName,
                 getColumns(modelClass.getDeclaredFields()), where, null, null,
                 null, null);

@@ -2,6 +2,7 @@ package com.example.spaclinic.models;
 
 import java.util.Date;
 
+@Table(table_name = "checkups")
 public class Checkup {
 
     @Column(

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    >
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:text="Nuevo Paciente"/>
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_below="@id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/rut"
+                android:hint="RUT: "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/firstName"
+                android:hint="Nombres: "
+                android:layout_below="@id/rut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/lastName"
+                android:hint="Apellidos: "
+                android:layout_below="@id/firstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/labelBirth"
+                android:layout_marginTop="16dp"
+                android:layout_below="@id/lastName"
+                android:text="Fecha de nacimiento: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <DatePicker
+                android:id="@+id/birthdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/labelBirth"
+                android:layout_margin="24dp"
+                />
+            <EditText
+                android:id="@+id/address"
+                android:hint="Dirección: "
+                android:layout_below="@id/birthdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/phone"
+                android:hint="Telefóno:"
+                android:layout_below="@id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/emergencyPhone"
+                android:hint="Telefóno de emergencia:"
+                android:layout_below="@id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/occupation"
+                android:hint="Ocupación:"
+                android:layout_below="@id/emergencyPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/patientAllergies"
+                android:layout_below="@id/occupation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Alergias:"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+            <EditText
+                android:id="@+id/patientDrugs"
+                android:layout_below="@id/patientAllergies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Drogas:"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+            <EditText
+                android:id="@+id/patientHabits"
+                android:layout_below="@id/patientDrugs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Habitos:"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+            <EditText
+                android:id="@+id/patientMorbidHistory"
+                android:layout_below="@id/patientHabits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Historial Morbido:"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+            <EditText
+                android:id="@+id/patientSurgicalHistory"
+                android:layout_below="@id/patientMorbidHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Historial Clinico:"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
+            <LinearLayout
+                android:id="@+id/createActions"
+                android:layout_marginVertical="8dp"
+                android:layout_below="@id/patientSurgicalHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                >
+                <Button
+                    android:layout_alignLeft="@id/createButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:background="@android:color/transparent"
+                    android:text="Cancelar"
+                    android:textColor="@color/design_default_color_primary"
+                    />
+
+                <Button
+                    android:id="@+id/createButton"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Crear"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

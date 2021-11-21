@@ -76,9 +76,16 @@ public class ExampleInstrumentedTest {
         user.setFirstName("Miguel");
         user.setLastName("Pérez");
         user.setEmail("miguel.apg94@gmail.com");
-        user.setPassword(new User().encryptMd5("Password1994*"));
+        user.setPassword("Password1994*");
 
-        dao.insert(user);
+        System.out.println("-------Creating...");
+        System.out.println(user.getFirstName());
+        System.out.println(user.getLastName());
+        System.out.println(user.getEmail());
+        System.out.println(user.getPassword());
+        System.out.println("-------");
+
+        //dao.insert(user);
 
         List<User> users = (List<User>) dao.GetAll(User.class, "");
         System.out.println(users.size());
@@ -94,13 +101,31 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
+    public void get(){
+
+        System.out.println("---------get----------");
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        DAO dao = new DAO(appContext);
+
+        User user = (User) dao.Get(User.class, "email = 'miguel.apg94@gmail.com'");
+        System.out.println("----Getting...---");
+        System.out.println(user.getID());
+        System.out.println(user.getFirstName());
+        System.out.println(user.getLastName());
+        System.out.println(user.getEmail());
+        System.out.println(user.getPassword());
+
+
+    }
+
+    @Test
     public void delete(){
 
         System.out.println("---------delete----------");
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         DAO dao = new DAO(appContext);
 
-        dao.delete(User.class, "");
+        //dao.delete(User.class, "");
 
 
     }

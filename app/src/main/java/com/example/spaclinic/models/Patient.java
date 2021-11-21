@@ -2,78 +2,85 @@ package com.example.spaclinic.models;
 
 import java.util.Date;
 
-public class Patient {
+@Table(table_name = "patients")
+public class Patient extends Model {
     @Column(
             column_name = "ID",
-            column_props = "INTEGER PRIMARY KEY AUTOINCREMENT",
-            getter = "getID",
-            setter = "setID"
+            column_props = "INTEGER PRIMARY KEY AUTOINCREMENT"
     )
     private int ID;
 
     @Column(
             column_name = "firstName",
-            column_props = "TEXT NOT NULL",
-            getter = "getFirstName",
-            setter = "setFirstName"
+            column_props = "TEXT NOT NULL"
     )
     private String firstName;
 
     @Column(
             column_name = "lastName",
-            column_props = "TEXT NOT NULL",
-            getter = "getLastName",
-            setter = "setLastName"
+            column_props = "TEXT NOT NULL"
     )
     private String lastName;
 
     @Column(
             column_name = "birthdate",
-            column_props = "TEXT NOT NULL",
-            getter = "getBirthdate",
-            setter = "setBirthdate"
+            column_props = "TEXT NOT NULL"
     )
     private Date birthdate;
 
     @Column(
             column_name = "rut",
-            column_props = "TEXT NOT NULL",
-            getter = "getRut",
-            setter = "setRut"
+            column_props = "TEXT NOT NULL"
     )
     private String rut;
 
     @Column(
             column_name = "address",
-            column_props = "TEXT NOT NULL",
-            getter = "getAddress",
-            setter = "setAddress"
+            column_props = "TEXT NOT NULL"
     )
     private String address;
 
     @Column(
             column_name = "phone",
-            column_props = "TEXT NOT NULL",
-            getter = "getPhone",
-            setter = "setPhone"
+            column_props = "TEXT NOT NULL"
     )
     private String phone;
 
     @Column(
             column_name = "emergencyPhone",
-            column_props = "TEXT NOT NULL",
-            getter = "getEmergencyPhone",
-            setter = "setEmergencyPhone"
+            column_props = "TEXT NOT NULL"
     )
     private String emergencyPhone;
 
     @Column(
             column_name = "occupation",
-            column_props = "TEXT NOT NULL",
-            getter = "getOccupation",
-            setter = "setOccupation"
+            column_props = "TEXT NOT NULL"
     )
     private String occupation;
+
+    @Column(
+            column_name = "drugs",
+            column_props = "TEXT NOT NULL"
+    )
+    private String drugs;
+
+    @Column(
+            column_name = "habits",
+            column_props = "TEXT NOT NULL"
+    )
+    private String habits;
+
+    @Column(
+            column_name = "morbid",
+            column_props = "TEXT NOT NULL"
+    )
+    private String morbid;
+
+    @Column(
+            column_name = "clinical",
+            column_props = "TEXT NOT NULL"
+    )
+    private String clinical;
 
     public int getId() {
         return ID;
@@ -145,5 +152,45 @@ public class Patient {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
+    }
+
+    public String getDrugs() {
+        return drugs;
+    }
+
+    public void setDrugs(String drugs) {
+        this.drugs = drugs;
+    }
+
+    public String getHabits() {
+        return habits;
+    }
+
+    public void setHabits(String habits) {
+        this.habits = habits;
+    }
+
+    public String getMorbid() {
+        return morbid;
+    }
+
+    public void setMorbid(String morbid) {
+        this.morbid = morbid;
+    }
+
+    public String getClinical() {
+        return clinical;
+    }
+
+    public void setClinical(String clinical) {
+        this.clinical = clinical;
+    }
+
+    public MenuItem getMenuItem() {
+        return new MenuItem(this.ID,
+                this.firstName + " " + this.lastName,
+                this.getRut(),
+                ""
+                );
     }
 }

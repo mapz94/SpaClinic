@@ -4,8 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/drawable/custom_gradient.xml" value="0.19537037037037036" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/drawable/menu_item.xml" value="0.2203125" />
         <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/activity_main.xml" value="0.23278985507246377" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/activity_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/fragment_appointments.xml" value="0.203125" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/fragment_patients.xml" value="0.203125" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/fragment_services.xml" value="0.203125" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/loading_dialog.xml" value="0.203125" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/menu_item_layout.xml" value="0.33" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/new_appointment.xml" value="0.33" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/new_patient.xml" value="0.25" />
+        <entry key="..\:/Users/migue/AndroidStudioProjects/SpaClinic/app/src/main/res/layout/new_service.xml" value="0.25" />
       </map>
     </option>
   </component>

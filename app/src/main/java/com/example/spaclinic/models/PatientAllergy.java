@@ -1,6 +1,7 @@
 package com.example.spaclinic.models;
 
-public class PatientAllergy {
+@Table(table_name = "patientAllergies")
+public class PatientAllergy extends Model {
     @Column(
             column_name = "ID",
             column_props = "INTEGER PRIMARY KEY AUTOINCREMENT",
@@ -47,5 +48,10 @@ public class PatientAllergy {
 
     public void setAllergy(String allergy) {
         this.allergy = allergy;
+    }
+
+    @Override
+    public MenuItem getMenuItem() {
+        return null;
     }
 }

@@ -2,53 +2,48 @@ package com.example.spaclinic.models;
 
 import java.util.Date;
 
-public class Appointment {
+@Table(table_name = "appointments")
+public class Appointment extends Model {
 
     @Column(
             column_name = "ID",
-            column_props = "INTEGER PRIMARY KEY AUTOINCREMENT",
-            getter = "getID",
-            setter = "setID"
+            column_props = "INTEGER PRIMARY KEY AUTOINCREMENT"
     )
     private int ID;
 
     @Column(
             column_name = "patientID",
-            column_props = "INTEGER NOT NULL",
-            getter = "getPatientID",
-            setter = "setPatientID"
+            column_props = "INTEGER NOT NULL"
     )
     private int patientID;
 
     @Column(
             column_name = "userID",
-            column_props = "INTEGER NOT NULL",
-            getter = "getUserID",
-            setter = "setUserID"
+            column_props = "INTEGER NOT NULL"
     )
     private int userID;
 
     @Column(
+            column_name = "sserviceID",
+            column_props = "INTEGER NOT NULL"
+    )
+    private int serviceID;
+
+    @Column(
             column_name = "CreationTime",
-            column_props = "TEXT NOT NULL",
-            getter = "getCreationTime",
-            setter = "setCreationTime"
+            column_props = "TEXT NOT NULL"
     )
     private Date creationTime;
 
     @Column(
             column_name = "appointedTime",
-            column_props = "TEXT NOT NULL",
-            getter = "getAppointedTime",
-            setter = "setAppointedTime"
+            column_props = "TEXT NOT NULL"
     )
     private Date appointedTime;
 
     @Column(
             column_name = "succeeded",
-            column_props = "INTEGER NOT NULL",
-            getter = "getSucceeded",
-            setter = "setSucceeded"
+            column_props = "INTEGER NOT NULL"
     )
     private boolean succeeded;
 
@@ -98,5 +93,17 @@ public class Appointment {
 
     public void setSucceeded(boolean succeeded) {
         this.succeeded = succeeded;
+    }
+
+    public MenuItem getMenuItem(Patient patient) {
+        return new MenuItem(this.ID,
+                patient.getFirstName() + " " + patient.getLastName(),
+                "Fecha de creación: " + this.creationTime,
+                "Para: " + this.appointedTime);
+    }
+
+    @Override
+    public MenuItem getMenuItem() {
+        return null;
     }
 }

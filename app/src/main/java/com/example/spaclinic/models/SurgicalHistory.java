@@ -65,4 +65,9 @@ public class SurgicalHistory extends Model{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public MenuItem getMenuItem() {
+        return null;
+    }
 }

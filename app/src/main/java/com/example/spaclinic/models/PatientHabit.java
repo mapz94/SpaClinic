@@ -1,6 +1,7 @@
 package com.example.spaclinic.models;
 
-public class PatientHabit {
+@Table(table_name = "patientHabits")
+public class PatientHabit extends Model {
 
     @Column(
             column_name = "ID",
@@ -48,5 +49,10 @@ public class PatientHabit {
 
     public void setHabit(String habit) {
         this.habit = habit;
+    }
+
+    @Override
+    public MenuItem getMenuItem() {
+        return null;
     }
 }
