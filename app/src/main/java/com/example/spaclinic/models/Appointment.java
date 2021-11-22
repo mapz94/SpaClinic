@@ -33,19 +33,25 @@ public class Appointment extends Model {
             column_name = "CreationTime",
             column_props = "TEXT NOT NULL"
     )
-    private Date creationTime;
+    private String creationTime;
 
     @Column(
             column_name = "appointedTime",
             column_props = "TEXT NOT NULL"
     )
-    private Date appointedTime;
+    private String appointedTime;
+
+    @Column(
+            column_name = "appointedDate",
+            column_props = "TEXT NOT NULL"
+    )
+    private String appointedDate;
 
     @Column(
             column_name = "succeeded",
             column_props = "INTEGER NOT NULL"
     )
-    private boolean succeeded;
+    private int succeeded;
 
     public int getID() {
         return ID;
@@ -71,27 +77,43 @@ public class Appointment extends Model {
         this.userID = userID;
     }
 
-    public Date getCreationTime() {
+    public int getServiceID() {
+        return serviceID;
+    }
+
+    public void setServiceID(int serviceID) {
+        this.serviceID = serviceID;
+    }
+
+    public String getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(Date creationTime) {
+    public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
     }
 
-    public Date getAppointedTime() {
+    public String getAppointedTime() {
         return appointedTime;
     }
 
-    public void setAppointedTime(Date appointedTime) {
+    public void setAppointedTime(String appointedTime) {
         this.appointedTime = appointedTime;
     }
 
-    public boolean isSucceeded() {
+    public String getAppointedDate() {
+        return appointedDate;
+    }
+
+    public void setAppointedDate(String appointedDate) {
+        this.appointedDate = appointedDate;
+    }
+
+    public int isSucceeded() {
         return succeeded;
     }
 
-    public void setSucceeded(boolean succeeded) {
+    public void setSucceeded(int succeeded) {
         this.succeeded = succeeded;
     }
 
@@ -103,7 +125,16 @@ public class Appointment extends Model {
     }
 
     @Override
+    public String toString() {
+        return this.getID() + "";
+    }
+
+    @Override
     public MenuItem getMenuItem() {
-        return null;
+        return new MenuItem(this.ID,
+                "Reserva: " + this.appointedDate + " " + this.appointedTime,
+                "",
+                ""
+        );
     }
 }

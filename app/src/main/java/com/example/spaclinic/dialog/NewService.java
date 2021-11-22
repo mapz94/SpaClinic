@@ -3,6 +3,7 @@ package com.example.spaclinic.dialog;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.spaclinic.DAO;
+import com.example.spaclinic.Menu;
 import com.example.spaclinic.R;
 import com.example.spaclinic.models.Service;
 
@@ -24,6 +26,7 @@ public class NewService extends AppCompatDialogFragment {
 
     private EditText serviceName;
     private EditText serviceCost;
+
 
     @NonNull
     @Override
@@ -60,6 +63,8 @@ public class NewService extends AppCompatDialogFragment {
                         DAO dao = new DAO(getContext());
                         dao.insert(service);
                         Toast.makeText(getContext(),"Servicio creado correctamente!",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getContext(), Menu.class);
+                        getContext().startActivity(intent);
                     }
                 });
 

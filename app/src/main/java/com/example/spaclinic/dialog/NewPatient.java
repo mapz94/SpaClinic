@@ -1,13 +1,18 @@
 package com.example.spaclinic.dialog;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,15 +21,24 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.spaclinic.DAO;
+import com.example.spaclinic.Menu;
 import com.example.spaclinic.R;
 import com.example.spaclinic.models.Patient;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class NewPatient extends AppCompatDialogFragment {
 
+    private DatePickerDialog datePickerDialog;
+    private Date birthdate;
+
+    private EditText id;
     private EditText rut;
     private EditText firstName;
     private EditText lastName;
-    private EditText birthdate;
+    private EditText birthdateEdit;
     private EditText address;
     private EditText phone;
     private EditText email;
@@ -35,6 +49,34 @@ public class NewPatient extends AppCompatDialogFragment {
     private EditText patientHabits;
     private EditText patientMorbidHistory;
     private EditText patientSurgicalHistory;
+
+    private void initDatePicker(){
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(year, month, day);
+                birthdate = calendar.getTime();
+                birthdateEdit.setText(getDateString(birthdate));
+            }
+        };
+
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        birthdateEdit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View view) {
+                datePickerDialog = new DatePickerDialog(getContext(), dateSetListener,year,month,day );
+                datePickerDialog.show();
+            }
+        });
+        birthdateEdit.setText(getDateString(new Date()));
+    }
+
 
 
     @NonNull
@@ -48,8 +90,8 @@ public class NewPatient extends AppCompatDialogFragment {
         rut = view.findViewById(R.id.rut);
         firstName = view.findViewById(R.id.firstName);
         lastName = view.findViewById(R.id.lastName);
-        birthdate = view.findViewById(R.id.birthdate);
         address = view.findViewById(R.id.address);
+        birthdateEdit = view.findViewById(R.id.birthdateEdit);
         email = view.findViewById(R.id.email);
         phone = view.findViewById(R.id.phone);
         emergencyPhone = view.findViewById(R.id.emergencyPhone);
@@ -59,6 +101,8 @@ public class NewPatient extends AppCompatDialogFragment {
         patientHabits = view.findViewById(R.id.patientHabits);
         patientMorbidHistory = view.findViewById(R.id.patientMorbidHistory);
         patientSurgicalHistory = view.findViewById(R.id.patientSurgicalHistory);
+
+        initDatePicker();
 
         builder.setView(view)
                 .setTitle("Nuevo Paciente")
@@ -75,7 +119,6 @@ public class NewPatient extends AppCompatDialogFragment {
                         if(rut.getText().toString().isEmpty()
                         || firstName.getText().toString().isEmpty()
                         || lastName.getText().toString().isEmpty()
-                        || birthdate.getText().toString().isEmpty()
                         || address.getText().toString().isEmpty()
                         || phone.getText().toString().isEmpty()
                         || email.getText().toString().isEmpty()
@@ -89,11 +132,12 @@ public class NewPatient extends AppCompatDialogFragment {
                             Toast.makeText(getContext(),"Favor llenar todos los campos.",Toast.LENGTH_SHORT).show();
                             return;
                         }
+
                         Patient patient = new Patient();
                         patient.setRut(rut.getText().toString());
                         patient.setFirstName(firstName.getText().toString());
                         patient.setLastName(lastName.getText().toString());
-                        patient.setBirthdate(birthdate.getText().toString());
+                        patient.setBirthdate(birthdateEdit.getText().toString());
                         patient.setAddress(address.getText().toString());
                         patient.setPhone(phone.getText().toString());
                         patient.setEmail(email.getText().toString());
@@ -109,9 +153,17 @@ public class NewPatient extends AppCompatDialogFragment {
                         DAO dao = new DAO(getContext());
                         dao.insert(patient);
                         Toast.makeText(getContext(),"Paciente creado correctamente!",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getContext(), Menu.class);
+                        getContext().startActivity(intent);
                     }
                 });
 
         return builder.create();
     }
+
+    private String getDateString(Date date){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(date);
+    }
+
 }

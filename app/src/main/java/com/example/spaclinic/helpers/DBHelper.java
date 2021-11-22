@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "SPACLINICC";
+    private static final String DATABASE_NAME = "SPACLINICD";
 
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 3);
@@ -24,6 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // Tablas son creadas desde las clases si son accedidas por primera vez.
+        
     }
 
     @Override

@@ -118,6 +118,11 @@ public class User extends Model{
     }
 
     @Override
+    public String toString() {
+        return "(" + this.getID() + ")" + " Email: " + this.getEmail();
+    }
+
+    @Override
     public MenuItem getMenuItem() {
         return new MenuItem(this.ID, this.firstName + " " + this.lastName, this.email, "");
     }

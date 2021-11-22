@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="
+Favor registrarse primero para poder iniciar sesión.\n\n
+Posteriormente, en el menú debe de crear primero el servicio.\n\n
+Posterior, crear un paciente.\n\n
+Despues Crear una reserva.\n\n
+
+Para eliminar, favor sostener.\n\n
+
+Gracias por leer.
+"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

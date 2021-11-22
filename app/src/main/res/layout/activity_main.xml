@@ -11,13 +11,12 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
-            android:id="@+id/headers"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:orientation="vertical">
             <TextView
-                android:id="@+id/apptitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SPA Clinic"
@@ -25,17 +24,14 @@
                 android:textAlignment="center"
                 android:layout_marginBottom="16dp"/>
             <TextView
-                android:id="@+id/appcontent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/apptitle"
                 android:textAlignment="center"
                 android:text="Aplicación para el ingreso y mantenimiento de sus pacientes"
                 android:layout_marginVertical="16dp"
                 />
             <EditText
                 android:id="@+id/user_box"
-                android:layout_below="@id/appcontent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Ingrese Email Usuario:" />
@@ -47,12 +43,12 @@
                 android:layout_below="@id/user_box"
                 android:hint="Ingrese Contraseña:"
                 android:inputType="textPassword"/>
-            <RelativeLayout
-                android:id="@+id/actions"
+            <LinearLayout
                 android:layout_below="@id/pass_box"
                 android:padding="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 >
                 <Button
                     android:id="@+id/login_button"
@@ -71,9 +67,15 @@
                     android:text="Registrarse"
                     android:onClick="goSignUp"
                     />
+                <Button
+                    android:id="@+id/HowToUse"
+                    android:text="Que es esto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            </RelativeLayout>
-        </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>

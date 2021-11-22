@@ -2,6 +2,7 @@ package com.example.spaclinic;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.spaclinic.models.MenuItem;
 import com.example.spaclinic.models.Model;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
@@ -44,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         MenuItem menuItem = items.get(position).getMenuItem();
-        if(menuItem.equals(null)){
+        if(menuItem == null){
             return;
         }
         holder.itemID.setText("ID: " + menuItem.getID());
@@ -54,7 +52,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Toast.makeText(context, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                if(items.size() > 0){
+                    Class<?> _class = items.get(0).getClass();
+                    DAO dao = new DAO(view.getContext());
+                    dao.delete(_class, "ID = " + menuItem.getID());
+                    Toast.makeText(view.getContext(), "Objeto eliminado", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(view.getContext(), Menu.class);
+                    view.getContext().startActivity(intent);
+                }
+
+            }
+        });
+        holder.parentLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return false;
             }
         });
     }

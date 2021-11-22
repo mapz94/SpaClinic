@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.spaclinic.dialog.NewService;
 import com.example.spaclinic.models.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,13 +23,22 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private Button signupButton;
 
+    private Button whatsthis;
+
     private DAO dao;
 
     private LoadingDialog loadingDialog;
 
+    private static User loggedin;
+
+    public User getLoggedin(){
+        return this.loggedin;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         loadingDialog = new LoadingDialog(MainActivity.this);
+
         try{
             dao = new DAO(getApplicationContext());
         }catch(Exception e){
@@ -38,10 +48,22 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        whatsthis = (Button) findViewById(R.id.HowToUse);
+        whatsthis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), HowToUse.class);
+                view.getContext().startActivity(i);
+            }
+        });
+
         userBox = (EditText) findViewById(R.id.user_box);
         passBox = (EditText) findViewById(R.id.pass_box);
         loginButton = (Button) findViewById(R.id.login_button);
         signupButton = (Button) findViewById(R.id.signup_button);
+
+        openDialog();
     }
 
 
@@ -64,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             loadingDialog.dismissDialog();
             return;
         }
+        loggedin = login;
         loadingDialog.dismissDialog();
         Toast.makeText(getApplicationContext(),"Bienvenido!",Toast.LENGTH_SHORT).show();
         // TODO: Go to main application once logged in.
@@ -75,5 +98,12 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, SignUp.class);
         startActivity(i);
     }
+
+    public void openDialog(){
+        DialogUse dialogUse = new DialogUse();
+        dialogUse.show(this.getSupportFragmentManager(), "Instrucciones");
+    }
+
+
 
 }

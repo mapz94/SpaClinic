@@ -47,6 +47,11 @@ public class Service extends Model {
         this.cost = cost;
     }
 
+    @Override
+    public String toString() {
+        return "(" + this.getId() + ")" + " " + this.getService();
+    }
+
     public MenuItem getMenuItem() {
         DecimalFormat df = new DecimalFormat(
                 "#,##0",

@@ -212,6 +212,11 @@ public class Patient extends Model {
         this.clinical = clinical;
     }
 
+    @Override
+    public String toString() {
+        return "(" +  this.getId() + ") " + this.getFirstName() + " " + this.getLastName();
+    }
+
     public MenuItem getMenuItem() {
         return new MenuItem(this.ID,
                 this.firstName + " " + this.lastName,

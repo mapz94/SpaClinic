@@ -17,8 +17,11 @@ import android.view.ViewGroup;
 import com.example.spaclinic.DAO;
 import com.example.spaclinic.R;
 import com.example.spaclinic.RecyclerViewAdapter;
+import com.example.spaclinic.dialog.NewAppointment;
+import com.example.spaclinic.dialog.NewPatient;
 import com.example.spaclinic.models.Appointment;
 import com.example.spaclinic.models.Model;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,8 @@ public class Appointments extends Fragment {
     private RecyclerView recycler;
 
     private ArrayList<Model> items = new ArrayList<Model>();
+
+    private FloatingActionButton addButton;
 
     public Appointments() {
         // Required empty public constructor
@@ -86,12 +91,20 @@ public class Appointments extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        addButton = view.findViewById(R.id.addButton);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
+
         recycler = getView().findViewById(R.id.recycler);
 
         DAO dao = new DAO(getContext());
 
         items = (ArrayList<Model>) dao.GetAll(Appointment.class, "");
-
 
         Recycle(items);
 
@@ -101,5 +114,10 @@ public class Appointments extends Fragment {
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), items);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    public void openDialog(){
+        NewAppointment newAppointment = new NewAppointment();
+        newAppointment.show(getParentFragmentManager(), "Nueva Cita");
     }
 }
