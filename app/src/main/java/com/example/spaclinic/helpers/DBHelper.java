@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // Tablas son creadas desde las clases si son accedidas por primera vez.
-        
+
     }
 
     @Override
