@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/custom_gradient"
     android:padding="16dp"
-    tools:context=".HowToUse">
+    tools:context="com.manager.spaclinic.HowToUse">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

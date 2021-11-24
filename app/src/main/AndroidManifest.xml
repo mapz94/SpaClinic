@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpaClinic">
         <activity
-            android:name=".HowToUse"
+            android:name="com.manager.spaclinic.HowToUse"
             android:exported="true" />
         <activity
-            android:name=".Menu"
+            android:name="com.manager.spaclinic.Menu"
             android:exported="true" />
         <activity
-            android:name=".SignUp"
+            android:name="com.manager.spaclinic.SignUp"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.manager.spaclinic.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
