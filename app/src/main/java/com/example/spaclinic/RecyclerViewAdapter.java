@@ -2,7 +2,9 @@ package com.example.spaclinic;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +15,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spaclinic.models.MenuItem;
 import com.example.spaclinic.models.Model;
+import com.example.spaclinic.models.Patient;
 
 import java.util.ArrayList;
 
@@ -52,13 +57,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                if(items.size() > 0){
-                    Class<?> _class = items.get(0).getClass();
-                    DAO dao = new DAO(view.getContext());
-                    dao.delete(_class, "ID = " + menuItem.getID());
-                    Toast.makeText(view.getContext(), "Objeto eliminado", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(view.getContext(), Menu.class);
-                    view.getContext().startActivity(intent);
+                if(items.get(position).getClass().equals(Patient.class)){
+                    Patient patient = (Patient) items.get(position);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    View view1 = View.inflate(view.getContext(), R.layout.empty, null);
+                    builder.setView(view1)
+                            .setTitle("Llamar?")
+                            .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            })
+                            .setPositiveButton("Llamar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", patient.getPhone(), null));
+                                    view.getContext().startActivity(intent);
+                                }
+                            });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }else{
+                    Toast.makeText(view.getContext(), menuItem.getTitle(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -66,6 +87,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                View view1 = View.inflate(view.getContext(), R.layout.empty, null);
+                builder.setView(view1)
+                        .setTitle("Eliminar?")
+                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        })
+                        .setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Class<?> _class = items.get(position).getClass();
+                                DAO dao = new DAO(view.getContext());
+                                dao.delete(_class, "ID = " + menuItem.getID());
+                                Toast.makeText(view.getContext(), "Objeto eliminado", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(view.getContext(), Menu.class);
+                                view.getContext().startActivity(intent);
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
                 return false;
             }
         });

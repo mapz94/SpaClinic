@@ -31,7 +31,7 @@ public class HowToUse extends AppCompatActivity {
         });
 
         vv = (VideoView) findViewById(R.id.videoView);
-        vv.setVideoURI(Uri.parse("https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
+        vv.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.videoplayback));
 
         MediaController mediaController = new MediaController(this);
         vv.setMediaController(mediaController);

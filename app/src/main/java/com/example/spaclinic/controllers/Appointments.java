@@ -96,7 +96,12 @@ public class Appointments extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDialog();
+                Runnable r = new Runnable() {
+                    public void run() {
+                        openDialog();
+                    }
+                };
+                r.run();
             }
         });
 

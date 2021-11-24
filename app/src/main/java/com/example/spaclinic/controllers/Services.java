@@ -99,7 +99,12 @@ public class Services extends Fragment {
             @Override
             public void onClick(View v)
             {
-                openDialog();
+                Runnable r = new Runnable() {
+                    public void run() {
+                        openDialog();
+                    }
+                };
+                r.run();
             }
         });
 

@@ -81,7 +81,7 @@ public class DAO {
                     }
                 }
             }catch (IllegalAccessException e){
-
+                e.printStackTrace();
             }
 
         }
@@ -119,7 +119,7 @@ public class DAO {
                     // Hay que hacer que solo tome la id que le corresponde sino pisara cada fila.
                 }
             } catch (IllegalArgumentException | IllegalAccessException e){
-
+                e.printStackTrace();
             }
         }
         return db.update(tableName, values, where, null);

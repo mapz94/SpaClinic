@@ -63,7 +63,12 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.login_button);
         signupButton = (Button) findViewById(R.id.signup_button);
 
-        openDialog();
+        Runnable r = new Runnable() {
+            public void run() {
+                openDialog();
+            }
+        };
+        r.run();
     }
 
 
